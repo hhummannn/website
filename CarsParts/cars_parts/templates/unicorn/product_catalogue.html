@@ -1,0 +1,61 @@
+<!-- template.html -->
+{% load unicorn %}
+
+<html>
+  <head>
+    {% unicorn_scripts %}
+  </head>
+  <body>
+    {% csrf_token %}
+    <div>
+        <!-- put component code here -->
+        <h2>Cars Parts</h2>
+        <h3>Catalogue for {{ brand }} {{ model }}</h3>
+    <style>
+    h2 {
+        color: #FFFFFF;
+        text-align: center;
+        background-color: #006400;
+        display: block;
+        font-size: 2.5em;
+        margin-top: 0em;
+        margin-bottom: 0em;
+        margin-left: 0;
+        margin-right: 0;
+        font-weight: bold;
+    }
+    h3 {
+        text-align: left;
+        display: block;
+        font-size: 1.75em;
+        font-weight: bold;
+    }
+    button {
+        background-color: #FFFFFF;
+        font-size: 1.2em;
+        border: none;
+        display: inline-block;
+        padding: 2em 1em;
+        margin: auto;
+        text-align: bottom;
+    }
+    button:hover {
+        background-color: #00A000; /* Green */
+        color: white;
+    }
+    hr {
+        text-align: center;
+    }
+    </style>
+        <hr/>
+        <div>
+            <button unicorn:click="refresh">Refresh</button>
+        </div>
+    </div>
+
+    <main>
+      {% unicorn 'cars_parts.components.product_catalogue' %}
+    </main>
+  </body>
+</html>
+
