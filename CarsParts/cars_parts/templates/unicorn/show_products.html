@@ -1,0 +1,71 @@
+<!-- template.html -->
+{% load static %}
+<div>
+    <!-- put component code here -->
+    <h2>Cars Parts</h2>
+    <h3>Catalogue for {{ brand }} {{ model }}</h3>
+<style>
+h2 {
+    color: #FFFFFF;
+    text-align: center;
+    background-color: #006400;
+    display: block;
+    font-size: 2.5em;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+h3 {
+    text-align: center;
+    display: block;
+    font-size: 1.75em;
+    font-weight: bold;
+}
+h4 {
+    text-align: center;
+    display: block;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+h5 {
+    text-align: center;
+    display: block;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+button {
+    background-color: #FFFFFF;
+    font-size: 1.2em;
+    border: none;
+    display: inline-block;
+    padding: 2em 1em;
+    margin: auto;
+    text-align: bottom;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+button:hover {
+    background-color: #00A000; /* Green */
+    color: white;
+}
+hr {
+    text-align: center;
+}
+</style>
+    <hr/>
+    <div>
+        {% for part in parts %}
+            <div>
+                <img unicorn:click="display_part({{ part.id }})" src="{% static part.title_image %}" class="center">
+                <h4>{{ part.name }}</h4>
+                <h5>{{ part.pricing.uah }} uah</h5>
+            </div>
+        {% endfor %}
+    </div>
+</div>

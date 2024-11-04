@@ -5,8 +5,8 @@ from django.views.generic import TemplateView
 
 
 class HomePage(TemplateView):
-    template_name = "index.html"
+    template_name = "home_page_load.html"
 
 
-class Catalogue(TemplateView):
-    template_name = "unicorn/product_catalogue.html"
+class ShowProducts(TemplateView):
+    template_name = "show_products_load.html"

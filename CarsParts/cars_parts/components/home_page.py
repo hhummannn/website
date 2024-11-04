@@ -3,7 +3,6 @@ from django_unicorn.components import UnicornView
 
 
 class HomePageView(UnicornView):
-    def show_category(self, brand, model):
+    def catalogue(self, brand, model):
         print(f"Brand is {brand}, model is {model}")
-        render()
-        return redirect("show_category", brand=brand, model=model)
+        return redirect("catalogue", brand=brand, model=model)
