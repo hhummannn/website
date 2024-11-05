@@ -1,0 +1,14 @@
+<!-- template.html -->
+{% load unicorn %}
+
+<html>
+  <head>
+    {% unicorn_scripts %}
+  </head>
+  <body>
+    {% csrf_token %}
+    <main>
+      {% unicorn 'display' part_id=part_id %}
+    </main>
+  </body>
+</html>
