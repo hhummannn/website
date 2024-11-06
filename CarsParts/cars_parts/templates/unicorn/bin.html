@@ -79,7 +79,7 @@ hr {
         {% endfor %}
         <div>
             <h4>Grand total: {{ grand_total }} uah</h4>
-            <button unicorn:click="checkout()">Checkout</button>
+            <button unicorn:click="checkout('{{ grand_total }}')">Checkout</button>
         </div>
     </div>
 </div>

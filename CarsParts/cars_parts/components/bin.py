@@ -21,19 +21,22 @@ class BinView(UnicornView):
             if part['part_id'] == part_id:
                 remember_index = index
                 break
-        self.user_bin.parts[index]['quantity'] = new_quantity
-        if self.user_bin.parts[index]['quantity'] > self.user_bin.parts[index]['available']:
-            self.user_bin.parts[index]['quantity'] = self.user_bin.parts[index]['available']
-        self.user_bin.parts[index]["total_price"] = (self.user_bin.parts[index]["price"] *
-                                                     self.user_bin.parts[index]["quantity"])
+        if new_quantity == 0:
+            self.user_bin.parts.pop(index)
+        else:
+            self.user_bin.parts[index]['quantity'] = new_quantity
+            if self.user_bin.parts[index]['quantity'] > self.user_bin.parts[index]['available']:
+                self.user_bin.parts[index]['quantity'] = self.user_bin.parts[index]['available']
+            self.user_bin.parts[index]["total_price"] = (self.user_bin.parts[index]["price"] *
+                                                         self.user_bin.parts[index]["quantity"])
         self.bin = self.user_bin.parts
         global user_bin
         user_bin = self.user_bin
-        print(self.user_bin.parts[index])
-        print(self.user_bin.parts)
 
     def grand_total(self):
+        if len(self.user_bin.parts) == 0:
+            return 0
         return sum([part['total_price'] for part in self.user_bin.parts])
 
-    def checkout(self):
-        return redirect("checkout")
+    def checkout(self, grand_total):
+        return redirect("checkout", grand_total=grand_total)

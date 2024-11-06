@@ -25,3 +25,7 @@ class Bin(TemplateView):
 
 class Checkout(TemplateView):
     template_name = "checkout_load.html"
+
+
+class Payment(TemplateView):
+    template_name = "payment_load.html"

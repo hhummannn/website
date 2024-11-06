@@ -1,0 +1,13 @@
+<div>
+<form wire:submit.prevent="create_checkout_session">
+    <label for="amount">Amount (USD):</label>
+    <h3 id="amount">{{ amount }} uah</h3>
+
+    <button type="submit">Proceed to Payment</button>
+
+    {% if checkout_url %}
+        <p>Redirecting to payment...</p>
+        <meta http-equiv="refresh" content="0; URL={{ checkout_url }}">
+    {% endif %}
+</form>
+</div>
