@@ -1,73 +1,85 @@
-# "website" (dude the name sucks wtf)
+# CarsParts "website"
 
-## What the fuck dude? It sucks!
-Why thank you for the kind words, but as far as I'm concerned, 
-the thing's as good as it gets, I have a "webstore" that 
-actually does shit 
-(also looks like one, but that's whole another story!)
+## What is this?
+This is a project created for one of university subjects. 
+The project in question is a backbone of a webstore with 
+functional payment system connected.
 
-## Oh... good job, whatever this POS is... Oh yeah what is this anyway?
-Thanks for asking! This is a project I made for one of my
-university subjects. The project in question is a backbone of a
-website with functional payment system connected.
-
-## Dude you suck, how did you even manage to write something like this?
-I'll be taking it as a compliment! Matter of fact, it sucks a lot less
-than it could!
-
-For this magnificent garbage to come to life, I forced myself to work
-with:
+## How is this?
+This is a python-based project, that uses
 * [django-unicorn]
 * [Stripe]
 * [html] (lol)
+* [PostGreSQL DB](https://www.postgresql.org/)
 
-## The hell?? No CSS? No JS?
-YEAH, now fuck off will you
+## No CSS? No JS?
+I kinda did use some css to position the things on the pages at 
+least somewhat close to what I had in mind.
 
-Nay, well, as far as I can tell (the "far" in question being
-a really small amount), I kinda used some css to position the things 
-on the pages at least somewhat close to what I had in mind.
-
-So far as JS goes, the `django-unicorn` is a framework that kinda 
+So far as JS goes, `django-unicorn` is a framework that kinda 
 interconnects html with python code directly, so I had no need for JS.
-I totally could use it, but I totally said "fuck it!"
 
-## What is this code...
-This is sorta-kinda typical structure of a django project.
+## Structure
+This is the typical structure of a django project.
 The "server" ([manage.py]) is located in the [CarsParts] folder.
 
 [CarsParts/CarsParts] folder contains some admin shit, like settings 
 of the server, connection to PostGreSQL DB, etc
 
-Now [cars_parts] is a tad more amusing, I mostly contributed to this
-folder's sources. This is a folder of an "app" that's created by some
-dark magic shit (a.k.a. `python manage.py startapp cars_parts`)
+[cars_parts]. I mostly contributed to this folder. 
+This is a folder of an "app" that's created by `python manage.py startapp cars_parts`
 
-[components] is a folder that contains Unicorn components, the python
-side of the [django-unicorn]. Here I tried my best to make your eyes
-bleed by writing code as unoptimal as it gets.
+[components] contains Unicorn components, the python side of the 
+[django-unicorn].
 
 [templates] and [templates/unicorn] folders contain all the [html] sources.
-Now because I'm a dimwit when it comes to web, I made a "_load" html for
+Now because I'm a noob when it comes to web, I made a "_load" html for
 every page I'm going to, because I had no idea how to change pages while 
-attaching unicorn views. Feel free to ignore (**:super-sweaty-emoji:**)!
+attaching unicorn views.
 
-## So you're saying you even managed the database?
-
-Hell yeah! But fuck I'd be lying if I told you I'll give you any access
-to it. Backtrack, bitch!
-
+## Database
 All in all, there are 7 tables, and they fulfil the very absolute minimum
 of what you need to keep at least some track of parts and orders and the sort.
 
-## Say I have your database, how to I test this for myself?
-Rather simple really! But before you run it, setup your database connection data
-in [settings.py], and do `export stripe_api_key="<your Stripe SECRET key here>"`,
-Stripe will use this env var (I should be getting additional points here purely for
-not committing secret keys here lol (that will backfire because I've committed
-database credentials lol))
+* models
+  * brand varchar,
+  * model varchar
+* prices
+  * uah float,
+  * usd float, (unused)
+  * eur float (unused)
+* parts
+  * model_id integer REFERENCES models (id),
+  * name varchar,
+  * description text,
+  * available integer,
+  * pricing integer
+* images
+  * image_name varchar,
+  * part_id integer REFERENCES parts (id)
+* customers
+  * recipient_name varchar,
+  * recipient_address varchar,
+  * phone varchar,
+  * email varchar
+* orders
+  * order_number integer,
+  * customer_id integer REFERENCES customers (id)
+* ordered_parts
+  * order_id integer REFERENCES orders (id),
+  * part_id integer REFERENCES parts (id),
+  * quantity integer
 
-Now that you're done setting up and I'm done yapping, do this
+The tables are populated with minimal amount of data, just enough to
+run the simulation
+
+## Setup and testing
+Before you run everything, setup your database connection data in 
+[settings.py], and do `export stripe_api_key="<your Stripe SECRET key here>"`
+in your shell, Stripe will use this env var as validation token
+
+When that's out of the way, open the [root folder] in terminal and run the
+following
 ```shell
 # I used python 3.11.9 for this project, that's what the code should work with
 
@@ -77,13 +89,10 @@ pip install -r requirements.txt
 cd CarsParts
 python manage.py runserver
 ```
-Voila, fuckers! [localhost], babyy
+Voila, [localhost]
 
-## Dude how do I navigate this shit...
-However you want, the UI is totally user friendly and intuitive. Now be on your way.
-
-## Bruh... Okay okay you've done a decent job, given how much you suck at this
-Oi, why so aggressive? I'm doing my best out here...
+## Contributing
+Don't.
 
 ### Special thanks to:
 * Me for enduring this
@@ -94,9 +103,7 @@ Oi, why so aggressive? I'm doing my best out here...
 * Stripe being a simple intuitive thing
 * Me for not giving up
 
-### See ya never!
-
-
+[root folder]: ./
 [localhost]: http://127.0.0.1:8000/
 [Stripe]: https://docs.stripe.com/
 [html]: https://en.wikipedia.org/wiki/HTML
