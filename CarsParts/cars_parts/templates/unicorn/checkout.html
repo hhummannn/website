@@ -1,0 +1,89 @@
+<!-- template.html -->
+{% load static %}
+<div>
+    <!-- put component code here -->
+    <h2>Cars Parts</h2>
+    <h3>Bin</h3>
+<style>
+h2 {
+    color: #FFFFFF;
+    text-align: center;
+    background-color: #006400;
+    display: block;
+    font-size: 2.5em;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+h3 {
+    text-align: center;
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+}
+h4 {
+    text-align: left;
+    display: block;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+button {
+    background-color: #FFFFFF;
+    font-size: 1.2em;
+    border: none;
+    display: inline-block;
+    padding: 2em 1em;
+    margin: auto;
+    text-align: bottom;
+}
+button:hover {
+    background-color: #00A000; /* Green */
+    color: white;
+}
+.images_view {
+    width: 80%;
+    display: flex;
+    text-align: center;
+}
+.info_view {
+    width: 50%;
+    text-align: auto;
+}
+.panel_view {
+    display: flex;
+}
+hr {
+    text-align: center;
+}
+.left_panel {
+    margin-left: 120px;
+    width: 50%;
+}
+.right_panel {
+    width: 50%;
+}
+vertical {
+    display: inline-block;
+}
+</style>
+    <hr/>
+    <div class="panel_view">
+        <div class="left_panel" style="font-size: 1.5em; ">
+            <h4>Name</h4>
+            <input unicorn:model="customer_name" type="text" style="font-size: 1.5em;" value="" class="vertical">
+            <h4>Full Address</h4>
+            <input unicorn:model="customer_address" type="text" style="font-size: 1.5em;" value="" class="vertical">
+            <h4>Phone number</h4>
+            <input unicorn:model="customer_phone" type="text" style="font-size: 1.5em;" value="" class="vertical">
+            <h4>EMail</h4>
+            <input unicorn:model="customer_email" type="text" style="font-size: 1.5em;" value="" class="vertical">
+        </div>
+        <div class="right_panel">
+            <h4>{{ grand_total }} uah</h4>
+            <button unicorn:click="save_and_pay()">Confirm order and checkout</button>
+        </div>
+    </div>
+</div>
+

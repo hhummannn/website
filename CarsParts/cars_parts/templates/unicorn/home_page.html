@@ -27,12 +27,19 @@ button:hover {
     background-color: #00A000; /* Green */
     color: white;
 }
-hr {
-    text-align: center;
+.bin-div {
+    float: right;
+    height: 100px;
 }
 </style>
     <hr/>
-    <button unicorn:click="catalogue('Toyota', 'Camry')">Toyota Camry</button>
-    <button unicorn:click="catalogue('Toyota', 'Corolla')">Toyota Corolla</button>
-    <button unicorn:click="catalogue('Kia', 'Sportage')">Kia Sportage</button>
+    <div class="bin-div">
+        <button unicorn:click="bin()">Bin</button>
+    </div>
+    <div>
+        <button unicorn:click="catalogue('Toyota', 'Camry')">Toyota Camry</button>
+        <button unicorn:click="catalogue('Toyota', 'Corolla')">Toyota Corolla</button>
+        <button unicorn:click="catalogue('Kia', 'Sportage')">Kia Sportage</button>
+    </div>
+
 </div>

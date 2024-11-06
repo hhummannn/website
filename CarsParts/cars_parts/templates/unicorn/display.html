@@ -3,7 +3,7 @@
 <div>
     <!-- put component code here -->
     <h2>Cars Parts</h2>
-    <h3>Catalogue for {{ brand }} {{ model }}</h3>
+    <h3>{{ name }}</h3>
 <style>
 h2 {
     color: #FFFFFF;
@@ -20,7 +20,7 @@ h2 {
 h3 {
     text-align: center;
     display: block;
-    font-size: 1.75em;
+    font-size: 2em;
     font-weight: bold;
 }
 h4 {
@@ -46,13 +46,25 @@ button {
 }
 .center {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 60%;
 }
 button:hover {
     background-color: #00A000; /* Green */
     color: white;
+}
+.images_view {
+    width: 50%;
+    display: flex;
+    text-align: center;
+}
+.info_view {
+    width: 50%;
+    text-align: auto;
+}
+.panel_view {
+    display: flex;
 }
 hr {
     text-align: center;
@@ -66,13 +78,18 @@ hr {
     <div class="bin-div">
         <button unicorn:click="bin()">Bin</button>
     </div>
-    <div>
-        {% for part in parts %}
-            <div>
-                <img unicorn:click="display_part({{ part.id }})" src="{% static part.title_image %}" class="center">
-                <h4>{{ part.name }}</h4>
-                <h5>{{ part.pricing.uah }} uah</h5>
-            </div>
-        {% endfor %}
+    <div class="panel_view">
+        <div class="images_view" text-align: left>
+            <button unicorn:click="previous_image" display_image.src = {{current_image}}>Previous</button>
+            <img id="display_image" src="{% static current_image %}" class="center">
+            <button unicorn:click="next_image" display_image.src = {{current_image}}>Next</button>
+        </div>
+        <div class="info_view">
+            <h4>Name: {{ name }}</h4>
+            <h4>Description: {{ description }}</h4>
+            <h4>Price: {{ price }} uah</h4>
+            <input unicorn:model="quantity" type="number" value="1" step='1' id="chosen_quality" min="1" max="{{ available }}">
+            <button unicorn:click="add_part( '{{ quantity }}' )">Add</button>
+        </div>
     </div>
 </div>

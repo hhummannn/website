@@ -59,12 +59,12 @@ class ShowProductsView(UnicornView):
                 if image['part_id'] == part['id']:
                     self.datablocks[str(part['id'])]['images'][str(id)] = image['image_name']
                     id += 1
-        print(self.datablocks)
 
     def parts(self):
         return self.parts
 
     def display_part(self, part_id):
-        print(part_id)
         return redirect("display", part_id=part_id)
 
+    def bin(self):
+        return redirect("bin")

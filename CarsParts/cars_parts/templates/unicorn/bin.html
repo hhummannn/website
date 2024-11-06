@@ -1,0 +1,85 @@
+<!-- template.html -->
+{% load static %}
+<div>
+    <!-- put component code here -->
+    <h2>Cars Parts</h2>
+    <h3>Bin</h3>
+<style>
+h2 {
+    color: #FFFFFF;
+    text-align: center;
+    background-color: #006400;
+    display: block;
+    font-size: 2.5em;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+h3 {
+    text-align: center;
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+}
+h4 {
+    text-align: left;
+    display: block;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+button {
+    background-color: #FFFFFF;
+    font-size: 1.2em;
+    border: none;
+    display: inline-block;
+    padding: 2em 1em;
+    margin: auto;
+    text-align: bottom;
+}
+button:hover {
+    background-color: #00A000; /* Green */
+    color: white;
+}
+.images_view {
+    width: 80%;
+    display: flex;
+    text-align: center;
+}
+.info_view {
+    width: 50%;
+    text-align: auto;
+}
+.panel_view {
+    display: flex;
+}
+hr {
+    text-align: center;
+}
+</style>
+    <hr/>
+    <div>
+        {% for part in bin %}
+            <div class="panel_view">
+                    <div class="info_view">
+                        <img unicorn:click="display_part({{ part.id }})" src="{% static part.title_image %}" class="images_view">
+                    </div>
+                    <div class="info_view">
+                        <h4>{{ part.name }}</h4>
+                    </div>
+                    <div class="info_view">
+                        <input unicorn:model="new_quantity" type="number" value="{{ part.quantity }}" step='1' min="0" max="{{ part.available }}">
+                        <button unicorn:click="update_quantity( '{{ new_quantity }}', '{{ part.part_id }}')">
+                            Refresh Bin
+                        </button>
+                        <h4 id="part_{{ part.part_id }}_price" >{{ part.total_price }} uah</h4>
+                    </div>
+            </div>
+        {% endfor %}
+        <div>
+            <h4>Grand total: {{ grand_total }} uah</h4>
+            <button unicorn:click="checkout('{{ grand_total }}')">Checkout</button>
+        </div>
+    </div>
+</div>

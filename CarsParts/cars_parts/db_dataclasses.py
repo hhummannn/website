@@ -1,6 +1,45 @@
 from dataclasses import dataclass
 
 
+class UserBin:
+    def __init__(self):
+        """
+        self.parts = {
+            {
+                "part_id": part_id,
+                "quantity": quantity,
+                "available": available,
+                "price": price,
+                "title_image": title_image,
+                "name": name,
+            },
+        }
+        """
+        self.parts = []
+
+    def add_part(self, part_id, quantity, available, price, title_image, name):
+        title_image = f"images/{title_image}"
+        to_add = {
+            "part_id": int(part_id),
+            "quantity": int(quantity),
+            "available": int(available),
+            "price": float(price),
+            "total_price": float(price) * int(quantity),
+            "title_image": title_image,
+            "name": name,
+        }
+        for part in self.parts:
+            if part['part_id'] == to_add['part_id']:
+                to_add['quantity'] = to_add['quantity'] + part['quantity']
+                if to_add['quantity'] > to_add['available']:
+                    to_add['quantity'] = to_add['available']
+                to_add["total_price"] = to_add["price"] * to_add["quantity"]
+                for key, value in to_add.items():
+                    part[key] = value
+                return
+        self.parts.append(to_add)
+
+
 class Parts:
     def __init__(self, id, model_id, name, description, available, pricing, images):
         self.id = id

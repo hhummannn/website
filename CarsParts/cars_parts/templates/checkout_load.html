@@ -1,0 +1,14 @@
+<!-- template.html -->
+{% load unicorn %}
+
+<html>
+  <head>
+    {% unicorn_scripts %}
+  </head>
+  <body>
+    {% csrf_token %}
+    <main>
+      {% unicorn 'checkout' grand_total=grand_total %}
+    </main>
+  </body>
+</html>

@@ -1,3 +1,4 @@
 Django
 django-unicorn
 psycopg2
+stripe
