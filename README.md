@@ -97,7 +97,7 @@ Oi, why so aggressive? I'm doing my best out here...
 ### See ya never!
 
 
-[localhost]: https://127.0.0.1:8000
+[localhost]: http://127.0.0.1:8000/
 [Stripe]: https://docs.stripe.com/
 [html]: https://en.wikipedia.org/wiki/HTML
 [django-unicorn]: https://www.django-unicorn.com/
